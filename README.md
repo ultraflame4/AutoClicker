@@ -9,4 +9,5 @@ Custom Intervals
 
 Future Additions:                                                                                             
 Ability To Customise The Key That Will Be Auto Clicked           
-CPS Counter/Display
+CPS Counter/Display           
+Macros
