@@ -2,8 +2,8 @@
 Auto Clicker Features:                                                                                                                   
 Customisable Hot Keys                                                                                                 
 Default Hot Key is K                                                                                                                       
-Includes Key Holder
-Custom Intervals
+Includes Key Holder             
+Custom Intervals              
 
 
 
