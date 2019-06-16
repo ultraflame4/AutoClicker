@@ -30,7 +30,7 @@ Macro_Menu = False
 standby = False
 clicks = 0
 while run:
-    print('######################\nAutoClicker\nBy ultraflame42\n######################')
+    print('######################\nAutoClicker v2.5\n@https://tinyurl.com/y64le7ps\n######################')
     time.sleep(0.5)
     print('\nHot Key > %s\nIntervals > %s \n' % (key, intervals))
     time.sleep(0.5)
@@ -41,7 +41,7 @@ while run:
     if options == '-a':
         print('\n\n\n\n')
         clear()
-        print('######################\nAutoClicker\nBy ultraflame42\n######################')
+        print('######################\nAutoClicker v2.5\n@https://tinyurl.com/y64le7ps\n######################')
         print('[][][][][][][][][][]\nKey > %s\nCurrent Interval > %s \n[][][][][][][][][][]' % (key, intervals))
         key = input('New Hot key ->')
         f = open('data_K', 'w+')
@@ -51,32 +51,38 @@ while run:
         print('\n\n\n\n')
         clear()
         print('\nCurrent Key > %s\nInterval > %s \n' % (key, intervals))
+        print('CPS [%s]' % (round((1 / float(intervals)), 2)))
         intervals = input('New Interval (INTEGERS ONLY) ->')
+        print('New CPS [%s]' % (round((1 / float(intervals)), 2)))
         f = open('data_I', 'w+')
         f.write(str(intervals))
         f.close()
     elif options == '-c':
         time.sleep(1)
-        print('Auto Clicker On Standby \nPress Hotkey [%s] To Start' % (key))
+        print('Auto Clicker On Standby \nPress Hotkey [%s] To Start\nPress Esc To Cancel' % (key))
         standby = True
     elif options == '-d':
         print('\n\nKey To Hold\nUse "+" In Between Characters Without space To Hold Multiple Keys')
         holdkey = input('INPUT >').lower()
         standby = True
     elif options == '-e':
-        Macro_Menu = True
+        clear()
+        print('######################\nAutoClicker v2.5\n@https://tinyurl.com/y64le7ps\n######################')
+        print('Sorry Macros Have Been Disabled')
+        time.sleep(3)
+        Macro_Menu = False
 
 
     while Macro_Menu:
         clear()
-        print('######################\nAutoClicker\nBy ultraflame42\n######################')
+        print('######################\nAutoClicker v2.5\n@https://tinyurl.com/y64le7ps\n######################')
         print('Macro Menu\n*********************\nDisclaimer:\nThe Macros Are Not Really Macros\nThey Are More Like Stored Keystrokes\n*********************')
         print('\n-a > View \ Activate Macros    -b > Create New Macro')
         macromenu_user_input = input('->')
 
         if macromenu_user_input == '-a':
             clear()
-            print('######################\nAutoClicker\nBy ultraflame42\n######################')
+            print('######################\nAutoClicker\n@https://tinyurl.com/y64le7ps\n######################')
             print('Macro Menu\n*********************\nDisclaimer:\nThe Macros Are Not Really Macros\nThey Are More Like Stored Keystrokes\n*********************')
             print('Macro List:\n********************************************')
             f = open('data_macro', 'r')
@@ -97,21 +103,26 @@ while run:
                 if path.exists('Macros/' + macro_del):
                     remove('Macros/' + macro_del)
             elif macrolist_input == '-a':
+                # Redoo##############################################################
                 macro_activate = input('Enter Macro Name ->')
                 f = open(('Macros/' + macro_activate), 'r')
                 play_macro = f.read()
                 f.close()
-                
+
                 macro_play = True
                 while macro_play:
                     clear()
                     print(play_macro)
+                    # Redoo##############################################################
                     print('[PRESS HOTKEY (%s) TO ACTIVATE SELECTED MACRO]' % (key))
                     if keyboard.is_pressed(key):
-                        keyboard.play(str(play_macro), 0)
+                        keyboard.play(play_macro, speed_factor=0)
+
                         macro_play = False
+                        break
 
         elif macromenu_user_input == '-b':
+            # Redoo##############################################################
             new_macro_name = input('New Macro Name ->')
             new_macro = keyboard.record(until='escape')
             f = open(('Macros/' + new_macro_name), 'w+')
@@ -134,6 +145,11 @@ while run:
                 keyholder = True
                 print('\n\n\n\n')
                 clear()
+        elif keyboard.is_pressed(hotkey='escape'):
+            print('Canceled')
+            time.sleep(2)
+            standby = False
+
     while keyholder:
         print('Holding [%s] key' % (holdkey))
         keyboard.press(hotkey=holdkey)
@@ -142,8 +158,9 @@ while run:
     while autoclicker:
         print('\n\n\n\n')
         clear()
-        print('######################\nAutoClicker\nBy ultraflame42\n######################')
+        print('######################\nAutoClicker\n@https://tinyurl.com/y64le7ps\n######################')
         print('[AUTO CLICKER ENABLED]\n[Clicks] %s \n ######################' % (clicks))
+        print('CPS [%s]' % (round((1 / float(intervals)), 2)))
         if keyboard.is_pressed(key):
             autoclicker = False
         clicks += 1
